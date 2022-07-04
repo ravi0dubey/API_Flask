@@ -47,6 +47,31 @@ def math_operation_via_postman():
             result = 'the quotient when ' + str(num1) + ' is divided by ' + str(num2) + ' is ' + str(r)
         return jsonify(result)
 
+@app.route('/new_test', methods=['POST']) # for calling the API from Postman/SOAPUI
+
+def new_test_function():
+
+    if (request.method=='POST'):
+        oper1=request.json['val0']
+        val1=int(request.json['val1'])
+        val2 = int(request.json['val2'])
+
+        if(oper1=='add'):
+            res =val1 + val2 + 5
+            result= 'the sum of '+str(val1)+' and '+str(val2) +' is '+str(res)
+
+        if (oper1== 'subtract'):
+            res = val1 - val2 - 5
+            result = 'the difference of ' + str(val1) + ' and ' + str(val2) + ' is ' + str(res)
+
+        if (oper1 == 'multiply'):
+            res = val1 * val2 * 5
+            result = 'the product of ' + str(val1) + ' and ' + str(val2) + ' is ' + str(res)
+
+        if (oper1 == 'divide'):
+            r = val1 / val2
+            result = 'the quotient when ' + str(val1) + ' is divided by ' + str(val2) + ' is ' + str(r)
+        return jsonify(result)
 
 if __name__ == '__main__':
     app.run()
