@@ -48,9 +48,7 @@ def math_operation_via_postman():
         return jsonify(result)
 
 @app.route('/new_test', methods=['POST']) # for calling the API from Postman/SOAPUI
-
 def new_test_function():
-
     if (request.method=='POST'):
         oper1=request.json['val0']
         val1=int(request.json['val1'])
@@ -72,6 +70,34 @@ def new_test_function():
             r = val1 / val2
             result = 'the quotient when ' + str(val1) + ' is divided by ' + str(val2) + ' is ' + str(r)
         return jsonify(result)
+
+@app.route('/new_test1', methods=['POST']) # for calling the API from Postman/SOAPUI
+def new_test_function1():
+    if (request.method=='POST'):
+        name=request.json['name']
+        email_id= request.json['email_id']
+        phone_number = request.json['phone_number']
+        result1 = name + " " + email_id + " " + str(phone_number)
+        return jsonify(result1)
+
+@app.route('/url_test1') # for calling the API from Postman/SOAPUI
+def url_test_function1():
+    test1 = request.args.get('val1')
+    test2 = request.args.get('val2')
+
+    return '''<h1> my result is :  {}, {} </h1>'''.format(test1,test2)
+
+
+@app.route('/url_test2') # for calling the API from Postman/SOAPUI
+def url_test_function2():
+    test1 = int(request.args.get('val1'))
+    test2 = int(request.args.get('val2'))
+    test3=  int(request.args.get('val3'))
+    result = test1 * test2 + test3
+    return '''<h1> my result is :  {}, {}, {}, {} </h1>'''.format(test1,test2, test3, result)
+
+
+
 
 if __name__ == '__main__':
     app.run()
